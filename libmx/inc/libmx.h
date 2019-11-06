@@ -4,6 +4,8 @@
 #include <malloc/malloc.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <fcntl.h> 
+#include <errno.h> 
 //#include <stdio.h>
 //#define DEBUG
 
@@ -55,4 +57,6 @@ void *mx_memmem(const void *big, size_t big_len, const void *little, size_t litt
 void *mx_memmove(void *dst, const void *src, size_t len);
 void *mx_realloc(void *ptr, size_t size);
 bool mx_isspace(char c);
-
+void skip_spaces(const char *str, int *i);
+void skip_untilspace(const char *str, int *i);
+void skipchar(const char *str, char c, int *i);

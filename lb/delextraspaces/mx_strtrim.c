@@ -6,6 +6,7 @@ void skip_spaces(const char *str, int *i)
 {
     for (; mx_isspace(str[*i]); (*i)++) {}
 }
+
 void skip_untilspace(const char *str, int *i)
 {
     for (; !mx_isspace(str[*i]) && str[*i]; (*i)++) {}
