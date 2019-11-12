@@ -1,10 +1,12 @@
 #include "../inc/libmx.h"
+#include <stdio.h>
+int eoferrno_test();
 
- #include <stdio.h>
+
 int main() {
-    setlocale(LC_ALL,"RUS");
-    mx_print_unicode(2323);
-    printf("\n");
-    return 0;
+    char *ptr = calloc(5, 1);
+    printf("memory before = %d\n", (int)ptr);
+
+    printf("memory after = %d\n", (int)(ptr = realloc(ptr, 7)));
 }
 

@@ -1,13 +1,13 @@
 #pragma once
 #include <stddef.h>
 #include <stdlib.h>
-//#include <malloc/malloc.h>
+#include <malloc/malloc.h>
 #include <unistd.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <fcntl.h> 
 #include <errno.h> 
-//#include <string.h>
+#include <string.h>
 //#define DEBUG
 
 void mx_printchar(char c);
@@ -61,4 +61,5 @@ bool mx_isspace(char c);
 void skip_spaces(const char *str, int *i);
 void skip_untilspace(const char *str, int *i);
 void skipchar(const char *str, char c, int *i);
+bool is_substr(const char *haystack, const char *needle);
 
