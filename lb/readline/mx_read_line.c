@@ -4,7 +4,6 @@
 
 int mx_read_line(char **lineptr, int buf_size, char delim, const int fd)
 {
-
     int res = 0;
     int read_bytes = 0;
     static t_tail tail;
@@ -30,7 +29,6 @@ int mx_read_line(char **lineptr, int buf_size, char delim, const int fd)
             return res;
         }
         if ((ind_delim = mx_get_char_index(buf, delim)) >= 0) {
-
             mx_strcpy(*lineptr, tail.s);
             mx_strncpy(*lineptr + tail.len, buf, ind_delim);
             *lineptr += tail.len + ind_delim;
@@ -59,9 +57,9 @@ int mx_read_line(char **lineptr, int buf_size, char delim, const int fd)
     if (errno) {
         free(buf);
         buf = NULL;
-
         return -2;
     }
+
     if (!res && !read_bytes) {
         free(buf);
         buf = NULL;
@@ -97,22 +95,19 @@ int mx_read_line(char **lineptr, int buf_size, char delim, const int fd)
     free(buf_tmp);
     buf_tmp = NULL;
     buf_size = read_bytes;
-    if ((ind_delim = mx_get_char_index(tail.s, delim)) >= 0)
-    {
+    if ((ind_delim = mx_get_char_index(tail.s, delim)) >= 0) {
         mx_strncpy(*lineptr, tail.s, ind_delim);
         *lineptr += ind_delim;
         res += ind_delim;
         tail.s = mx_strjoin(tail.s + ind_delim + 1, buf);
         tail.len += buf_size - ind_delim - 1;
-        
         free(s_tmp);
         s_tmp = tail.s;
         free(buf);
         buf = NULL;
         return res;
     }
-    else if ((ind_delim = mx_get_char_index(buf, delim)) >= 0)
-    {
+    else if ((ind_delim = mx_get_char_index(buf, delim)) >= 0) {
         mx_strcpy(*lineptr, tail.s);
         mx_strncpy(*lineptr + tail.len, buf, ind_delim);
         *lineptr += tail.len + ind_delim;
@@ -125,8 +120,7 @@ int mx_read_line(char **lineptr, int buf_size, char delim, const int fd)
         buf = NULL;
         return res;
     }
-    else
-    {
+    else {
         mx_strcpy(*lineptr, tail.s);
         mx_strcpy(*lineptr + tail.len, buf);
         *lineptr += tail.len + buf_size;
