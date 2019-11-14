@@ -15,6 +15,11 @@ void *data;
 struct s_list *next;
 } t_list;
 
+typedef struct s_tail {
+char *s;
+int len;
+} t_tail;
+
 void mx_printchar(char c);
 void mx_print_unicode(wchar_t c);
 void mx_printstr(const char *s);

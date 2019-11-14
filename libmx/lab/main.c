@@ -1,12 +1,19 @@
 #include "../inc/libmx.h"
 #include <stdio.h>
-int eoferrno_test();
+#include <string.h>
+
+void foo()
+{
+    static t_tail tail;
+    printf("s = %s\n", tail.s);
+    printf("len = %d\n", tail.len);
+    tail.s = strdup("word");
+    tail.len = strlen(tail.s);
+}
 
 
 int main() {
-    char *ptr = calloc(5, 1);
-    printf("memory before = %d\n", (int)ptr);
-
-    printf("memory after = %d\n", (int)(ptr = realloc(ptr, 7)));
+    foo();
+    foo();
 }
 

@@ -1,13 +1,23 @@
 #pragma once
 #include <stddef.h>
 #include <stdlib.h>
-#include <malloc/malloc.h>
+//#include <malloc/malloc.h>
 #include <unistd.h>
 #include <stdbool.h>
 #include <fcntl.h> 
 #include <errno.h> 
 //#include <stdio.h>
 //#define DEBUG
+
+typedef struct s_list {
+void *data;
+struct s_list *next;
+} t_list;
+
+typedef struct s_tail {
+char *s;
+int len;
+} t_tail;
 
 void mx_printchar(char c);
 void mx_print_unicode(wchar_t c);
@@ -68,9 +78,4 @@ void mx_pop_front(t_list **head);
 void mx_pop_back(t_list **head);
 int mx_list_size(t_list *list);
 t_list *mx_sort_list(t_list *lst, bool (*cmp)(void *, void *));
-
-typedef struct s_list {
-void *data;
-struct s_list *next;
-} t_list;
 
