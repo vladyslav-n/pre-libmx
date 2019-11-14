@@ -8,13 +8,10 @@ int main()
     char *s = (char*) calloc(1000, 1);
     int sum = 0;
     char *reserv = s;
-    int written_bytes = 0, buf_size = 36;
-    while ((written_bytes = mx_read_line(&s, buf_size, '-', fd)) >= 0)
+    int written_bytes = 0, buf_size = 2147483646;
+    while ((written_bytes = mx_read_line(&s, buf_size, ' ', fd)) >= 0)
     {
         sum += written_bytes;
-#ifdef DEBUG
-printf("written chars = %d\n", written_bytes);
-#endif
     }
 //     written_bytes = mx_read_line(&s, buf_size, '*', fd);
 //         sum += written_bytes;
