@@ -2,7 +2,7 @@
 // #ifdef DEBUG
 // #endif
 
-void swap(t_list **n1, t_list **n2)
+void swap_nodes(t_list **n1, t_list **n2)
 {
     t_list *tmp;
     tmp = *n1;
@@ -24,7 +24,7 @@ void quicksort_list(t_list **list, bool (*cmp)(void *, void *), int left, int ri
             j--;
         if (i <= j) {
             if (i != j) {
-                swap(&list[i], &list[j]);
+                swap_nodes(&list[i], &list[j]);
             }
             i++;
             j--;
