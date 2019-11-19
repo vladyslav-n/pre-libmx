@@ -7,19 +7,31 @@
 #include <fcntl.h> 
 #include <errno.h> 
 
+#define GRID_INIT_VAL -1
+
+enum errors {
+    INV_ARGC,
+    FILE_NOT_EXIST,
+    FILE_EMPTY,
+    INV_FIRST_LINE,
+    INV_LINE,
+    INV_NUM_OF_ISLS
+};
+
 typedef struct s_list {
 void *data;
 struct s_list *next;
 } t_list;
 
-typedef struct s_tail {
+typedef struct s_str_len {
 char *s;
 int len;
-} t_tail;
+} t_str_len;
 
 void mx_printchar(char c);
 void mx_print_unicode(wchar_t c);
 void mx_printstr(const char *s);
+void mx_printerror(const char *s);
 void mx_print_strarr(char **arr, const char *delim);
 void mx_printint(int n);
 char *mx_nbr_to_hex(unsigned long nbr);
@@ -52,8 +64,10 @@ int mx_count_words(const char *str, char c);
 char *mx_strtrim(const char *str);
 char *mx_del_extra_spaces(const char *str);
 char **mx_strsplit(const char *s, char c);
+char **mx_strsplit_ncount(const char *s, char c, int *count);
 char *mx_strjoin(const char *s1, const char *s2);
 char *mx_file_to_str(const char *file);
+char *mx_file_to_str_len(const char *file);
 int mx_read_line(char **lineptr, int buf_size, char delim, const int fd);
 char *mx_replace_substr(const char *str, const char *sub, const char *replace);
 void *mx_memset(void *b, int c, size_t len);
@@ -69,6 +83,7 @@ bool mx_isspace(char c);
 void skip_spaces(const char *str, int *i);
 void skip_untilspace(const char *str, int *i);
 void skipchar(const char *str, char c, int *i);
+int skip_untilchar_ncount(const char *str, char c, int *i);
 bool is_substr(const char *haystack, const char *needle);
 t_list *mx_create_node(void *data);
 void mx_push_front(t_list **list, void *data);

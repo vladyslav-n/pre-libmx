@@ -1,7 +1,7 @@
 #pragma once
 #include <stddef.h>
 #include <stdlib.h>
-#include <malloc/malloc.h>
+#include <malloc.h>
 #include <unistd.h>
 #include <stdbool.h>
 #include <fcntl.h> 
@@ -27,6 +27,7 @@ unsigned long mx_hex_to_nbr(const char *hex);
 bool mx_isdigit(int c);
 char *mx_nbr_to_hex(unsigned long nbr);
 char *mx_itoa(int number);
+int mx_atoi(const char *str);
 void mx_foreach(int *arr, int size, void (*f)(int));
 int mx_binary_search(char **arr, int size, const char *s, int *count);
 int mx_bubble_sort(char **arr, int size);

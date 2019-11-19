@@ -1,6 +1,4 @@
-#include <stdbool.h>
-bool mx_isdigit(int c);
-bool mx_isspace(char c);
+#include "../inc/libmx.h"
 
 int ato_posi(const char *str1) {
 	int num = 0;
