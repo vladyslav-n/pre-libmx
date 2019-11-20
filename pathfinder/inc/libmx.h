@@ -19,14 +19,32 @@ enum errors {
 };
 
 typedef struct s_list {
-void *data;
-struct s_list *next;
+    void *data;
+    struct s_list *next;
 } t_list;
 
 typedef struct s_str_len {
-char *s;
-int len;
+    char *s;
+    int len;
 } t_str_len;
+
+typedef struct s_route {
+    int len;
+    int *route_isls;
+    int total_dist;
+} t_route;
+
+typedef struct s_all_pathes {
+    int count;
+    t_route *route;
+} t_all_pathes;
+
+// typedef struct s_shortest_pathes {
+//     int count;
+//     t_route **routes;
+// } t_shortest_pathes;
+
+
 
 void mx_printchar(char c);
 void mx_print_unicode(wchar_t c);

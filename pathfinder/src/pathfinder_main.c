@@ -109,7 +109,27 @@ for (int i = 0; i < isl_count; i++)
          printf("%d ", grid[i][j]); 
     printf("\n");
 }
+    // argc++;
+    // argc--;
 #endif 
-    argc++;
+
+    // for (int i = 0; i < n - 1; i++) {
+    //     for (int j = i + 1; j < n; j++) {
+    //         if (grid[i][j] > 0)
+    //     }
+        
+    // }
+
+    // /* searching for a route from i-th island to j-th */
+    int n = isl_count;
+    // for (int i = 0; i < n; i++) {
+
+    // } 
+
+    /* creating a grid of shortest distances, initialized by -1,  and
+     * 
+     */
+    int **grid_dist = create_grid(n, n, -1);
+
 }
 
