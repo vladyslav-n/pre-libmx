@@ -1,4 +1,4 @@
-#include "../inc/libmx.h"
+#include "../inc/header.h"
 #include <stdio.h>
 #define DEBUG
 
@@ -46,6 +46,11 @@ void printerror(int num)
             break;
     }
     exit(num);
+}
+
+/* root number index */
+int RT(int i, int j, int n) {
+    return (i * (2 * n - 3 - i)) / 2 + j - 1;
 }
 
 int main(int argc, char *argv[])
