@@ -5,11 +5,11 @@
 int main()
 {
     int fd = open("copy", O_RDONLY);
-    char *s = (char*) calloc(1000, 1);
+    char *s = (char*) calloc(160000, 1);
     int sum = 0;
     char *reserv = s;
-    int written_bytes = 0, buf_size = 2147483646;
-    while ((written_bytes = mx_read_line(&s, buf_size, ' ', fd)) >= 0)
+    int written_bytes = 0, buf_size = 102400;
+    while ((written_bytes = mx_read_line(&s, buf_size, '#', fd)) >= 0)
     {
         sum += written_bytes;
     }

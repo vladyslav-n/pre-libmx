@@ -5,7 +5,8 @@
 
 void *mx_realloc(void *ptr, size_t size)
 {
-   size_t originalLength = malloc_size(ptr);
+   // size_t originalLength = malloc_size(ptr);
+   size_t originalLength = malloc_usable_size(ptr);
    if (size == 0)
    {
       free(ptr);

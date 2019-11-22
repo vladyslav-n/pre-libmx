@@ -1,25 +1,26 @@
 #pragma once
 #include <stddef.h>
 #include <stdlib.h>
-#include <malloc.h>
+#include <malloc/malloc.h>
 #include <unistd.h>
 #include <stdbool.h>
 #include <fcntl.h> 
 #include <errno.h> 
 
 typedef struct s_list {
-void *data;
-struct s_list *next;
+    void *data;
+    struct s_list *next;
 } t_list;
 
-typedef struct s_tail {
-char *s;
-int len;
-} t_tail;
+typedef struct s_str_len {
+    char *s;
+    int len;
+} t_str_len;
 
 void mx_printchar(char c);
 void mx_print_unicode(wchar_t c);
 void mx_printstr(const char *s);
+void mx_printerror(const char *s);
 void mx_print_strarr(char **arr, const char *delim);
 void mx_printint(int n);
 char *mx_nbr_to_hex(unsigned long nbr);
@@ -54,7 +55,7 @@ char *mx_del_extra_spaces(const char *str);
 char **mx_strsplit(const char *s, char c);
 char *mx_strjoin(const char *s1, const char *s2);
 char *mx_file_to_str(const char *file);
-int mx_read_line(char **lineptr, int buf_size, char delim, const int fd);
+int mx_read_line(char **lineptr, size_t buf_size, char delim, const int fd);
 char *mx_replace_substr(const char *str, const char *sub, const char *replace);
 void *mx_memset(void *b, int c, size_t len);
 void *mx_memcpy(void *restrict dst, const void *restrict src, size_t n);

@@ -2,11 +2,11 @@
 // #ifdef DEBUG
 // #endif
 
-int mx_read_line(char **lineptr, int buf_size, char delim, const int fd)
+int mx_read_line(char **lineptr, size_t buf_size, char delim, const int fd)
 {
     int res = 0;
-    int read_bytes = 0;
-    static t_tail tail;
+    size_t read_bytes = 0;
+    static t_str_len tail;
     if (!tail.s) {
         tail.s = mx_strnew(buf_size);
     }

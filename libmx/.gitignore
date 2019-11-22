@@ -9,3 +9,5 @@ main.c
 lab/
 copy
 .directory
+.o
+obj/

@@ -1,0 +1,491 @@
+Running tests for mx_count_words for Test
+
+----------------------------------------
+Comparing outputs
+Test case 2 Failed
+
+user output vs test output
+0a1
+> 1
+
+You lost 20 points
+----------------------------------------
+
+
+Running tests for mx_del_extra_spaces for Test
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 1 Failed
+
+user output vs test output
+1,2c1
+< ZV
+< 7kIYyxUiva8GwMLykOxZquMP3l5Dm 09v5c
+---
+> ZV 7kIYyxUiva8GwMLykOxZquMP3l5Dm 09v5c
+
+You lost 13 points
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 3 Failed
+
+user output vs test output
+1c1
+< u5w8ZPIOrl0cNmSaI5    W zDmR6qx64     jUWLQHGw
+---
+> u5w8ZPIOrl0cNmSaI5 W zDmR6qx64 jUWLQHGw
+
+You lost 13 points
+----------------------------------------
+-
+
+Running tests for mx_file_to_str for Test
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 2 Failed
+
+user output vs test output
+1,2c1,2
+<
+< size of pointer: 16
+---
+> (null)
+> size of pointer: 0
+
+You lost 20 points
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 3 Failed
+
+user output vs test output
+1,2c1,2
+<
+< size of pointer: 16
+---
+> (null)
+> size of pointer: 0
+
+You lost 10 points
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 4 Failed
+
+user output vs test output
+1,2c1,2
+<
+< size of pointer: 16
+---
+> (null)
+> size of pointer: 0
+
+You lost 10 points
+-
+
+Running tests for mx_pop_back for Test
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 4 Failed
+
+user output vs test output
+0a1,2
+> Empty list!
+> 0 leaks for 0 total leaked bytes
+\ No newline at end of file
+
+You lost 20 points
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 5 Failed
+
+user output vs test output
+0a1,2
+> Empty list!
+> 0 leaks for 0 total leaked bytes
+\ No newline at end of file
+
+You lost 20 points
+-
+
+Running tests for mx_pop_front for Test
+
+----------------------------------------
+Comparing outputs
+Test case 4 Failed
+
+user output vs test output
+0a1,2
+> Empty list!
+> 0 leaks for 0 total leaked bytes
+\ No newline at end of file
+
+You lost 20 points
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 5 Failed
+
+user output vs test output
+0a1,2
+> Empty list!
+> 0 leaks for 0 total leaked bytes
+\ No newline at end of file
+
+You lost 20 points
+-
+
+Running tests for mx_print_unicode for Test
+
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 3 Failed
+
+user output vs test output
+0a1
+> b'\xf5\x9e\xa9\xae'
+\ No newline at end of file
+
+You lost 30 points
+
+-
+
+Running tests for mx_quicksort for Test
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 1 Failed
+
+user output vs test output
+1c1
+< shuffles = 6
+---
+> shuffles = 3
+
+You lost 20 points
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 2 Failed
+
+user output vs test output
+1c1
+< shuffles = 29
+---
+> shuffles = 6
+
+You lost 20 points
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 3 Failed
+
+user output vs test output
+1c1
+< shuffles = 0
+---
+> shuffles = 1
+
+You lost 20 points
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 4 Failed
+
+user output vs test output
+1c1
+< shuffles = 51
+---
+> shuffles = 3
+
+You lost 20 points
+----------------------------------------
+-
+
+Running tests for mx_read_line for Test
+
+----------------------------------------
+Comparing outputs
+Test case 2 Failed
+
+user output vs test output
+0a1,28
+> tCj5THC2rRIrELhtb5mR4XS0Ygd5sBWB Z9CpSxde9F62 rIeDD8ZOJtMjB8fAA4mPEJ9DbjwP84aq07jUOppeQcx     nlCX3VBWObsmCChUEeQduK2rArxuZDstodUAVPTWNZfCW5j3
+> xeR0FLydSvp9CDCxSkC2LdzUbFBV50gic4PTdEQD20A5RCGsIT2IsP4DMyK
+> 238mIGnnQpfC  uPoOTFoCLqWTJEDy3zmvXb6CishK5XOCHVqAT6xP43xhgv7tAiEf8rLlpgEzkyclrDVRY4r5axIqdhPT7CZWUzS
+> jvYtzhAdmb0IN98TqNjfB
+> vgIWrlHLJ     BNS3p9sFyt7uUJ1Z
+> JtZ   OSD7keEflSWk2dbfjPUY2suiVQXQcXC         FYKvDh0vfOG39DWrQqa3rkZK       
+> mezOKlIySd0KrGx5Iza1EcCBWadhBiopi5BLXT47Ml4WtKZxNruRiX2r      LhsHpLJmAvntLv0t85eiQ2A2zB5siAC11qZC64WGud8nhprWUXkSMYw Y0Hf4okY6gJDXqzl hPq8NWDXChOdMqkAP8rHQsh
+> PXqdiqebSpuAblmK7     lORRmhgKmx TnbLdwjlZDr
+>       9S55QvShYiQkMBP nneELHLS
+> lZL   HB1c2yljn6Pasc amy8eBY  I7uj9W3LthNuLxfQNtIHY   ktAYV5Qqvt PWz2m9lZ7wRcwcz0Q60gCEPkWCXv0jcz
+> T1C66USDLmcLVQkLdjUXezotWUeF 5TPw6i6kkodFBZ8qe 5TGpa9lcs73dWGDHg5vHXZnysQ
+> F22r3p16A82
+> YkyQCsXshlvHp0V p7O28BlLPRi2VO6c8lLrLokwZeDZuii       T89Ynw1it6uV65trwoPn eu4vSs8SUqv6L5ktU7tDUUekoXhMEJ8D2RpFtRkXOsN        Vb6MwZv8WkuxB2j2YcuRvCMd8Qu5xv3Lo8bds4gBK9vpbr9AId7M4Pp
+> 2YrZlnfmeCLIl9iKA
+> aeGsLlt       PV5n GyAvxotf42OzX2 Ib2EgEsROgrlW5owwOswV6bxyeG0
+> hfZF1Uj
+>
+> qCK4ePlqVtJ0Ed0       LaP0N3ZyMm2D
+> PtjyYHw
+> K8rPLbRpAbW4TrBhSlB5XF7NGQ78LsQWnsyz4qqwv58n
+> g
+> FydNZ
+> czz9aNnj je3KyMkGN3P8yAZG     FphGQ61GHkqwVtRdBWWlv2WcpNMIdrjmcAAa484GCcyFSGB6Es      0bTx GgB5z0P7hfxuv9phnzdFtMCA8HXa3qOYE5F2Lq6aDqkXVc3dfxAYO pPWgX7g2m2CjMxsEPI
+> 1IfSfSnHXITEhztsnx4ycUuz2B1TmXg5CBIqbBnkcVn
+> WEpL5PAkMpewZkVw4iWRApu4URRDz1
+> EBaTfEhF4g EyM2w0IMz13S51iIsXFJmLbdnKk        NXi64BRvZ1q
+> hGwvFlDG64HEF8oR2KXnXJ RPOAvEEoqhfOoRRJEeN8VRBeQBWLgUSUfhrznybFYmQ9UZYReoZd5GxaRtHDIsgGxfkdw2xWulDvLlitFRi12PoxPTML9QhBLZfdk10V       1X
+> skIeXCihUQa7tytET8O5wiST ayKHHeE3GiuwwHodux49Pnf4V8rkiIu4     zYN2IXFG0 leaks for 0 total leaked bytes
+
+You lost 10 points
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 3 Failed
+
+user output vs test output
+0a1,142
+> pUK7WE0zX jAhSdE      RlGmIsTT2Q1MVEyoGeSTzy6YgrQI5odoa0B8m   W1TkdYrk9G4OHC54YOIacqKPN
+> 9D2y1RSehvRjHZZP      qA0y2HUxoDcL0KNbhApIsqHpCn9 2rjTO4DfHUWqe7p6fc3lGNAkrm33oUD9lcuKq5am0bEhl7okrLVokmvwj   uxiAj5znd       zAwr15zYCL0a66QqUx      e
+> ZGDPQ3XeCjlXT7o3yf
+> Ui9 aN         LdJ0nPlN       7uMRmhKUQ0g2WM5IqHiK6B996HP
+> cjrYA8j6gAUmzzvgENaZhoTQdPailbYWT1Yx inQugQYuLuwvYv9wDHSA4ZELUc       cJtd2JEMrUVO6GQMz5x1XrJHaJnMG41uKOUca
+> Pf2P9dtA      rwHmw76cmdHx l1QQ4TOG XA62ULgAspPdKnX6SuXgdd
+> McdF
+> CPfU99nh9JkT8tsk7L5moOdAM2pW4wFz64z   c276Uh3ov8bXGwPWwaz9FfsAvpTYqkEX4W t2zhQogEvWVO1Xuje53Og0S4J1FWgBCDPZLB6VY QGdxXfWdge5DlhTY2xL9jZvG cmk3L27     m0wIDniBv9zs2ipVmY pt5nZi19wd8NysMQz0
+> UQsjCxgAniHU88y1tn
+> UJGvIckIG8erdAILgSROziA7dDAvXYtkgxPk  47xabgkQ6yubCrGiAqTRrF6nEwuT6Y39uPo     OEFJgB fIDigv8gZP3o3TQvDLRJNkRhyKsaLU   f377BL3pjlH WdR5AAy2oiRDifE7XrquYqTKDNvZasABq8miP4dneZmAjfHGHVv8owTkM ssh5RoDDrtPiMje a 0KmshBElwZEJOISh5CY yfx8lFOAX3yEwr8YTzVTxH3     kxQoIuOMy9J4jGv5WDkQ26j27pj1FPmph       Ylv6lzUsf       uMtP HH3RAEFJYF0a18mLEW
+> Nit5AuReiSrUBRR3ER2UrT4myRoqp MB6i0wJpZkp4puNv1HzWkp3 MixCJsY0Y3K1S7gV4K0n1 Q9i3      AgiPZHB 9vAcZCPO6jxObGHeOh0Yn9m2LE ogJLxhKzIvdSgHM7K97GW 5uTE1yTWsV5Gvrix8ZHvKN5hFfvYTiItKDj Q3zQSPtcZu
+> gGA9Re1IgOj KzmGxQp8OOUx8op4mE5BBBK   WXb     OnvEpqaPCW       sE9WBuDea bMZsRjXfqzNmYact8YC45NWwGyNfZSF3WjsGjHn8D7tvCXganR5OFdSfSjH hwqKKBdimXQdWOgyWgPkRiC1nuRDkNQXq
+> eKpgU8zhU17wORt XSmxBae6qmoeqiJgXep31lXdCPD   x38Mrw6TFs      YD2Smad tAaqiTYLtytGGFLwZDf5k3x2i OonLKJzJr
+> kqRmsHz2EJKRMDWg0oeQ9Hg WqPNpZZocbYum7Uz82URdJK4EFPqDxEPTZyG
+> wO7WgjaDlSCcDiwKYnLmBzZ9uNz9t
+> XWp0  4Y VZOOhwGYuDySmJRppl4irtTKjPHSsgEeO1CXJTZ2mCtVV9HsPojuF9JBeZPUP6rgN9D87uNU jKjO3R6tTUyTo5qmWLIwtsP5OViD89      7C cA73qNYj9LeOpEixjAGX917      x81oykcIENoKxsiv2h3rmmPNe IRl9JldTPqkY7MYta14  50V7V4 u3        hFWSwl9hIkvkN8PMvbKju2RcKcIOjbW6m6hu1uGJFG2ow5v92BeqIXFo4Sk6j5hN64NnTdttp8gJJXWo2hNZKn0ThCSNeiIin VU5U2imtal59ZrE40sHbZ2AcusOdu zF DJTWkny9uAIQyiGtR9CydxUqauOfIaBX6sTCBevZzXdsLDhOooOU5KqAQ6wn57ILUIik46ekjmbyQ4kSOtaYDpBxqLh6j CdgdQy1 kpvn32TcVmRcNn Ke7YZj UuARBtQBUt7LQzX6WvbDYhfRZG
+You lost 20 points
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 4 Failed
+
+user output vs test output
+0a1,399
+> Y9xY2qiAXMyxhxPHvdXeTmGN4tQT1fe
+> dLf104YTy8sYARSV724
+> ST20GsgHAN5EJu1gcK5E0j8NuERDeZkrte3OG
+> ADDu2qIH9QgcLuyuH4dLu4ixOmmeHC7IlZMpG MCQQYAzrnLAGsk
+> lDtNqpLKSpXF  fNoSpxAe6YF
+> WD0jzLiF6912Jpn
+> HastxOfoLkGWuhQEAXAJj
+> JQWZJ6
+> Ho9afG1RZlNpxMHn6lqmbpllY nDbS8vuFPnl ruL6ZyfQBnkHdJB
+> NuEtFnzNbpz   UwWJoTwkjlozhX  vXTYTwVonoLJ5EHOxD3 wQR2NOv8l6Eo76tdWs9osE2v    8uj1j
+> rEx44eNA
+> s26Bw0JbIzwG7IIOL     f1J8JudmYWG4piJNbc0FUcJpWrAiMICn4ZoI9EYSpRac 4eYbb Rk16i9CFJuZD fvJ6x2Wr
+> LHA3IVNQsQaDEUf0w
+> gAhay0p
+> SNcK4Q1O      o9fiWxYicJMbay  HcvTtpKTEn6     e97g5QKiuFyGoZQAUQr8Jo896Jhv
+> xoLDL
+> 2Y1Wed6fpfsWdvvo9G5yzDticrYCnBpdcz
+> xuj2mincRFxcbAocS     ZiTFZT3GR       bubXdJQfYBbZEyoacGCG
+> 4r6NQMQ8UHqRErofHnp1OMLANV    nMl3JVlc5f
+> e6BqPjXNLtXN9OXqcR7vff0a6nGEbbVBxeTRQlASCSdR7km7Ju4hYyq
+> QKRD BWK5pFxuodrkc3OG69aIeA196maRkS1C5q B812MzKMtwE1ogPeum6Gb ie7yOQ8Qgx      v3TfwCc1q2Pd4sOz1qEMP0itL7fB zqQNJold1hO
+> v9PO5gBZ0U     0xK vIWNsJrth
+> SySciEN       rGfAkdatbEuGE6rUrtsVyWXBAUIUGgi1iaO92f 5sKOf7JmX  QUxJ H5g6Tp IXiMWiL   Yz      Ylwn    LOxzT49BbuJvT9P
+> KWNuACedSlj N4Wmh3OzeXVIHjKU57yJkwcX3ssnDyGj67gMoei778rHFz5RIKW1f MCpJ        og
+> RBOiE2lFgkETO0qPO219gxW3oE vpBcHLFpG42DoAbDI
+> 3gyiudap3sVcqEt4A eVbZ8fhHeVYPSxQt9qeRrpz7sPvBlg
+> CvnCCusTPB
+>  bp9WVLWiwZOJq1J7aQxDLn1bMZJHGCfuKCCS6 h4SBMf0Xj
+> iIpjP tI3mWYZZ9vJOQZGq3wBnpTnU4Z2zu   re5HMgjvb       NNh7VZmqu9uYDCzQx3w7PyH6qtUG BJpJgCqqMZn69vtAM6B5NUjWwO8hne X   76faqdZyqbnPzNsdS9YdCv60AzON7E2
+> HShMD7hHn7b3DqCnFRwDxPttYcOZlwcHsEh kTVz9Oza5ffHxv0y6906PDJHUWJBJ6DGpWoSYCUddutLKqiMWPSS2KPAp9xTtBXWW4VfFITz33q8dMof4jITiQe z2Lz11hSqZQJiL5msNBjVlB8pwJk      klEbiW DufrXKplosqIVlp  g       j3C4gxv         PJqyqG1A6WiN8x2lwLEhjpyYBR      OAt5o5hQu9TWWRu7ADh5jgymTVH8yjUPORG7rLCV3A7HCGmbOdfIENTclserQtCjx6DssrXV4CanXK  iT qMhxpRHkLOVGt35vpJbt 3wTh
+> HoOKHPm0fbdrymrsjz 42N5E2EU5mg7qyhGNRcqzGTFkmi
+> frOYTVxP5Id68KyeP18zHil       BHmLn9CZUUjsN59G6sbn7LagYauTDdMU39ocs5Z3cjQemd35NpbJ2fkS4xE
+> rfvzFHRP      qniuasPdyXsEb8vAwVrUt4BkHGLUr
+> Y54MEoBfdPU1r94Bein9fgmcCiqqjVuEQZPGZbkClPLLXUUCuYqyGFL8LOonsoraLnyNB1Cnq4p1qAIow3X4W5U
+> 5uX1SJhijM
+You lost 20 points
+----------------------------------------
+----------------------------------------
+Comparing outputs
+Test case 5 Failed
+
+user output vs test output
+0a1,3179
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>                          THE MATRIX
+>
+>
+>
+>
+>
+>
+>                              by
+>
+>                   Larry and Andy Wachowski
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>                         June 3, 1997
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> FADE IN:
+>
+> ON COMPUTER SCREEN
+>
+> so close it has no boundaries.
+>
+> A blinking cursor pulses in the electronic darkness like a
+> heart coursing with phosphorous light, burning beneath the
+> derma of black-neon glass.
+>
+> A PHONE begins to RING, we hear it as though we were
+> making the call.  The cursor continues to throb,
+> relentlessly patient, until --
+>
+>                          MAN (V.O.)
+>           Yeah?
+>
+> Data now slashes across the screen, information flashing
+> faster than we can read:  "Call trans opt:  received.
+> 2-19-96 13:24:18  REC:Log>."
+>
+>                          WOMAN (V.O.)
+>           Is everything in place?
+>
+> The man is silent.  On screen:  "Trace program:  running."
+>
+> We listen to the phone conversation as though we were on a
+> third line.  The man's name is Cypher.  The woman,
+> Trinity.
+>
+>                          TRINITY (WOMAN) (V.O.)
+>           I said, is everything in place?
+>
+> The entire screen fills with racing columns of numbers.
+> Shimmering like green-electric rivers, they rush at a 10-
+> digit phone number in the top corner.
+>
+>                          CYPHER (MAN) (V.O.)
+>           You weren't supposed to relieve me.
+>
+>                          TRINITY (V.O.)
+>           I know but I felt like taking a
+>           shift.
+>
+> The area code is identified.  The first three numbers
+> suddenly fixed, leaving only seven flowing columns.
+>
+>                          CYPHER (V.O.)
+>           You like him, don't you?  You like
+>           watching him?
+>
+> We begin MOVING TOWARD the screen, CLOSING IN as each
+> digit is matched, one by one, snapping into place like the
+> wh
+You lost 30 points
+-
+
+
+Running tests for mx_sort_list for Test
+----------------------------------------
+Comparing outputs
+Test case 0 Failed
+
+user output vs test output
+25c25
+< 7 leaks for 112 total leaked bytes
+\ No newline at end of file
+---
+> 0 leaks for 0 total leaked bytes
+\ No newline at end of file
+
+You lost 100 points
+-
+
+Running tests for mx_str_reverse for Test
+
+----------------------------------------
+Comparing outputs
+Test case 3 Failed
+
+user output vs test output
+0a1
+> (null)
+
+You lost 20 points
+-
+
+Running tests for mx_strsplit for Test
+
+----------------------------------------
+Comparing outputs
+Test case 2 Failed
+
+user output vs test output
+0a1,8
+> KSf
+> WV7cmJ7FCmCYpT3CCjp8J3w9RXnh7UCdY0mRda6Q0jTA
+> D2BRxggDkUSPecHyhHyWbekEj6pvzg1hozb98WSwoEapAz VKSe5KPE9uA
+> SKi
+> U7p
+> size of pointer: 128
+>
+> 0 leaks for 0 total leaked bytes
+\ No newline at end of file
+
+You lost 25 points
+-
+

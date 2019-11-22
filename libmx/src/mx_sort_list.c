@@ -42,7 +42,8 @@ void quicksort_list(t_list **list, bool (*cmp)(void *, void *), int left, int ri
 
 t_list *mx_sort_list(t_list *lst, bool (*cmp)(void *, void *))
 {   
-//    t_list *list = lst;
+    if (!lst)
+        return NULL;
     int size = mx_list_size(lst);
     t_list **arr = (t_list**) malloc(sizeof(t_list*) * size);
     for (int i = 0; i < size; i++)

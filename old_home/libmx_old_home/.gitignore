@@ -1,0 +1,11 @@
+.DS_Store
+*.out
+*.txt
+*.cc
+.vscode
+main.c
+1
+1 копія
+lab/
+copy
+.directory

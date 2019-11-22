@@ -5,6 +5,8 @@ INC = inc/libmx.h
 
 
 SRC = src/is_substr.c \
+	src/mx_atoi.c \
+	src/mx_itoa.c \
 	src/mx_binary_search.c \
 	src/mx_bubble_sort.c \
 	src/mx_count_substr.c \
@@ -36,6 +38,7 @@ SRC = src/is_substr.c \
 	src/mx_printint.c \
 	src/mx_print_strarr.c \
 	src/mx_printstr.c \
+	src/mx_printerror.c \
 	src/mx_print_unicode.c \
 	src/mx_push_back.c \
 	src/mx_push_front.c \
@@ -62,6 +65,8 @@ SRC = src/is_substr.c \
 	src/mx_swap_char.c \
 
 OBJ = obj/is_substr.o \
+	obj/mx_atoi.o \
+	obj/mx_itoa.o \
 	obj/mx_binary_search.o \
 	obj/mx_bubble_sort.o \
 	obj/mx_count_substr.o \
@@ -93,6 +98,7 @@ OBJ = obj/is_substr.o \
 	obj/mx_printint.o \
 	obj/mx_print_strarr.o \
 	obj/mx_printstr.o \
+	obj/mx_printerror.o \
 	obj/mx_print_unicode.o \
 	obj/mx_push_back.o \
 	obj/mx_push_front.o \
@@ -119,6 +125,8 @@ OBJ = obj/is_substr.o \
 	obj/mx_swap_char.o \
 
 SRCR = is_substr.c \
+	mx_atoi.c \
+	mx_itoa.c \
 	mx_binary_search.c \
 	mx_bubble_sort.c \
 	mx_count_substr.c \
@@ -150,6 +158,7 @@ SRCR = is_substr.c \
 	mx_printint.c \
 	mx_print_strarr.c \
 	mx_printstr.c \
+	mx_printerror.c \
 	mx_print_unicode.c \
 	mx_push_back.c \
 	mx_push_front.c \
@@ -176,6 +185,8 @@ SRCR = is_substr.c \
 	mx_swap_char.c \
 
 OBJR = is_substr.o \
+	mx_atoi.o \
+	mx_itoa.o \
 	mx_binary_search.o \
 	mx_bubble_sort.o \
 	mx_count_substr.o \
@@ -207,6 +218,7 @@ OBJR = is_substr.o \
 	mx_printint.o \
 	mx_print_strarr.o \
 	mx_printstr.o \
+	mx_printerror.o \
 	mx_print_unicode.o \
 	mx_push_back.o \
 	mx_push_front.o \

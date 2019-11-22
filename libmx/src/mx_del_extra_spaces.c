@@ -35,6 +35,7 @@ char *mx_del_extra_spaces(const char *str)
         fin[j] = s[i];
         if (mx_isspace(s[i]))
         {
+            fin[j] = ' ';
             skip_spaces(s, &i);
             continue;
         }
