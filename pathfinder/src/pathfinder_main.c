@@ -49,8 +49,21 @@ void printerror(int num)
 }
 
 /* root number index */
-int RT(int i, int j, int n) {
+int RI(int i, int j, int n) {
     return (i * (2 * n - 3 - i)) / 2 + j - 1;
+}
+
+void init_used_isl_arr(int *arr, int len, int isl_index) {
+    for (int i = 0; i < len; i++)
+    {
+        if (arr[i] < 0) {
+            arr[i] = 0;
+        }
+        else if (i == isl_index) {
+            arr[i] = 1;
+        }
+    }
+    
 }
 
 int main(int argc, char *argv[])
@@ -118,23 +131,36 @@ for (int i = 0; i < isl_count; i++)
     // argc--;
 #endif 
 
-    // for (int i = 0; i < n - 1; i++) {
-    //     for (int j = i + 1; j < n; j++) {
-    //         if (grid[i][j] > 0)
-    //     }
+    /* creating an array of lists of the shortest routes 
+     * (they may be not unique)
+     */
+    int n = isl_count;
+    int routes_count = (n * (n - 1)) / 2;
+
+    t_list **shortest_path
+         = (t_list**)malloc(sizeof(t_list*) * routes_count);
+    for (int i = 0; i < routes_count; i++) {
+        shortest_path[i] = NULL;
+    }
+    
+
+    /* creating all the routes from i-th islands to j-th */
+    int start = -1;
+    int *used_isl = (int*) malloc(sizeof(int) * n);
+    for (int i = 0; i < n; i++) {
+        used_isl[i] = -1;
+    }
+    
+    for (int i = 0; i < n - 1; i++) { 
+        for (int j = i + 1; j < n; j++)
+        {
+            if (grid[i][j] > 0)
+            start = j;
+        }
         
-    // }
+    }
 
     // /* searching for a route from i-th island to j-th */
-    int n = isl_count;
-    // for (int i = 0; i < n; i++) {
-
-    // } 
-
-    /* creating a grid of shortest distances, initialized by -1,  and
-     * 
-     */
-    int **grid_dist = create_grid(n, n, -1);
 
 }
 
