@@ -8,12 +8,12 @@ int **create_grid(int row, int col, int val)
 
     int **arr = (int **)malloc(row * sizeof(int *)); 
     for (i = 0; i < row; i++) 
-         arr[i] = (int *)malloc(col * sizeof(int)); 
+        arr[i] = (int *)malloc(col * sizeof(int)); 
   
     // Note that arr[i][j] is same as *(*(arr+i)+j) 
     for (i = 0; i <  row; i++) 
-      for (j = 0; j < col; j++) 
-        arr[i][j] = val;
+          for (j = 0; j < col; j++) 
+            arr[i][j] = val;
     return arr;
 }
 
@@ -54,20 +54,67 @@ int RI(int i, int j, int n) {
 }
 
 void init_used_isl_arr(int *arr, int len, int isl_index) {
-    for (int i = 0; i < len; i++)
-    {
+    for (int i = 0; i < len; i++) {
         if (arr[i] < 0) {
             arr[i] = 0;
         }
-        else if (i == isl_index) {
-            arr[i] = 1;
+        // else if (i == isl_index) {
+        //     arr[i] = 1;
+        // }
+    }
+    arr[isl_index] = 1;
+}
+
+int choose_isl(int *used_isl, int n) {
+    if (0 == n) {
+        return -1;
+    }
+    for (int i = 0; i < n; i++) {
+        if (!used_isl[i]) {
+            return i;
         }
     }
+    return -1;
+}
+
+t_routes_list* create_arr_routes_list(int num) {
+    t_routes_list* arr_routes_list = (t_routes_list*) malloc 
+        (num * sizeof(t_routes_list));
+    for (int i = 0; i < num; i++)
+    {
+        arr_routes_list[i].arr_routes = NULL;
+        arr_routes_list[i].count = 0;
+    }
+    return arr_routes_list;
+}
+
+int route_dist(t_list *cur_route, int len, int **grid) {
+    int dist = 0;
+    for (int i = 0; i < len - 1; i++)
+    {
+        dist += grid[*((int*)(cur_route->data))]
+                    [*((int*)(cur_route->next->data))];
+        cur_route = cur_route->next;
+    }
+    
     
 }
 
-int main(int argc, char *argv[])
-{
+void save_route(t_list *cur_route, int cur_route_len, 
+    t_routes_list* arr_routes_list, int root_index) {
+
+    if (!arr_routes_list[root_index].count) {
+        save_route(cur_route, cur_route_len, RI(i, j, n));
+    }
+    else if (arr_routes_list[RI(i, cur_i, n)].arr_routes[0].total_dist 
+        >= route_dist(cur_route, cur_route_len, grid)) {
+        save_route(cur_route, cur_route_len, 
+            arr_routes_list, RI(i, j, n));
+    } 
+}
+
+int main(int argc, char *argv[]) {
+
     // open(argv[1], O_RDONLY);
     /* save file to str */
     char *file = mx_file_to_str(argv[1]);
@@ -78,7 +125,8 @@ int main(int argc, char *argv[])
     int isl_count = mx_atoi(file_lines[0]);
 
     /* creating an array of lines, splitted into words */
-    char ***extra_isl_names = (char***) malloc((lines_count - 1) * sizeof(char**));
+    char ***extra_isl_names
+         = (char***) malloc((lines_count - 1) * sizeof(char**));
     for (int i = 0; i < lines_count - 1; i++) {
         extra_isl_names[i] = mx_strsplit(file_lines[i + 1], '-');
     }
@@ -144,20 +192,75 @@ for (int i = 0; i < isl_count; i++)
     }
     
 
-    /* creating all the routes from i-th islands to j-th */
+    /* creating all the routes from i-th islands to j-th (MAIN ALGORYTHM) */
     int start = -1;
     int *used_isl = (int*) malloc(sizeof(int) * n);
     for (int i = 0; i < n; i++) {
         used_isl[i] = -1;
     }
     
+    t_routes_list *arr_routes_list = 
+        create_arr_routes_list (n * (n - 1) / 2);
+
     for (int i = 0; i < n - 1; i++) { 
-        for (int j = i + 1; j < n; j++)
-        {
-            if (grid[i][j] > 0)
-            start = j;
-        }
         
+        t_list *cur_route = mx_create_node(grid[i]);
+        init_used_isl_arr(used_isl, n, i);
+        // t_list *start_isl = cur_route;
+        int cur_route_len = 1;
+        int cur_i = i;
+        int j = -1;
+        int prev_isl = -1;
+        while(cur_route)
+        {
+            while((j = choose_isl(used_isl + (prev_isl + 1) * sizeof(int), n - prev_isl - 1)) >= 0) //WARNING!!!!! NEED TO BE CORRECTED
+            //BUG - when NOT ALL the islands were used
+            //BUG - prev isl when starting from beg.
+            {
+                
+                while (grid[cur_i][j] < 0) 
+                {   //WARNING!!!!! NEED TO BE CORRECTED       
+                    if (++j == n) {
+                        break;
+                    }
+                }
+                if (j == n) {
+                    prev_isl = n - 1;
+                    break;
+                }
+                mx_push_front(&cur_route, grid[j]);
+                cur_route_len += 1;
+            
+                // start_isl = start_isl->next;
+                used_isl[j] = 1;
+                cur_i = j;
+                prev_isl = -1;
+            }
+            while((j = choose_isl(used_isl + (prev_isl + 1) * sizeof(int), 
+                    n - prev_isl - 1)) < 0) {
+                // if (*((int*)(cur_route->data)) > i) {
+                //     save_route(cur_route, cur_route_len);
+                // }
+                if (cur_i > i) {
+                    if (!arr_routes_list[RI(i, cur_i, n)].count) {
+                        save_route(cur_route, cur_route_len, RI(i, j, n));
+                    }
+                    else if (arr_routes_list[RI(i, cur_i, n)].arr_routes[0].total_dist 
+                        >= route_dist(cur_route, cur_route_len, grid)) {
+                        save_route(cur_route, cur_route_len, 
+                            arr_routes_list, RI(i, j, n));
+                    }
+                }
+                used_isl[cur_i] = 0;
+                prev_isl = cur_i;
+                mx_pop_front(cur_route);
+                if (cur_route) {
+                    cur_i = *((int*)(cur_route->data));
+                }
+                cur_route_len -= 1;
+            }
+
+        }
     }
 
     // /* searching for a route from i-th island to j-th */

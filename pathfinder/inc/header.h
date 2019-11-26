@@ -17,10 +17,17 @@ typedef struct s_route {
     int total_dist;
 } t_route;
 
-typedef struct s_all_pathes {
+// typedef struct s_all_pathes {
+//     int count;
+//     t_route *route;
+// } t_all_pathes;
+
+typedef struct s_routes_list {
     int count;
-    t_route *route;
-} t_all_pathes;
+    t_route *arr_routes;
+} t_routes_list;
+
+
 
 // typedef struct s_shortest_pathes {
 //     int count;
