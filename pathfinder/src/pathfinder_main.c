@@ -50,7 +50,7 @@ void printerror(int num)
 
 /* root number index */
 int RI(int i, int j, int n) {
-    return (i * (2 * n - 3 - i)) / 2 + j - 1;
+    return i * (2 * n - 3 - i) / 2 + j - 1;
 }
 
 void init_used_isl_arr(int *arr, int len, int isl_index) {
@@ -66,7 +66,7 @@ void init_used_isl_arr(int *arr, int len, int isl_index) {
 }
 
 int choose_isl(int *used_isl, int n) {
-    if (0 == n) {
+    if (!n) {
         return -1;
     }
     for (int i = 0; i < n; i++) {
@@ -77,16 +77,14 @@ int choose_isl(int *used_isl, int n) {
     return -1;
 }
 
-t_routes_list* create_arr_routes_list(int num) {
-    t_routes_list* arr_routes_list = (t_routes_list*) malloc 
-        (num * sizeof(t_routes_list));
-    for (int i = 0; i < num; i++)
-    {
-        arr_routes_list[i].arr_routes = NULL;
-        arr_routes_list[i].count = 0;
-    }
-    return arr_routes_list;
-}
+// int **create_arr_routes_list(int num) {
+//     t_list **arr_routes_list = (t_list**) malloc 
+//         (num * sizeof(t_list*));
+//     for (int i = 0; i < num; i++) {
+//         arr_routes_list[i] = NULL;
+//     }
+//     return arr_routes_list;
+// }
 
 int route_dist(t_list *cur_route, int len, int **grid) {
     int dist = 0;
@@ -96,21 +94,51 @@ int route_dist(t_list *cur_route, int len, int **grid) {
                     [*((int*)(cur_route->next->data))];
         cur_route = cur_route->next;
     }
-    
-    
+    return dist;
 }
 
-void save_route(t_list *cur_route, int cur_route_len, 
-    t_routes_list* arr_routes_list, int root_index) {
-
-    if (!arr_routes_list[root_index].count) {
-        save_route(cur_route, cur_route_len, RI(i, j, n));
+int *create_root(t_list *route, int len, int **grid) {
+    int *new_route = (int*)malloc(sizeof(int) * (len + 2));
+    int dist = 0;
+    int i = 2;
+    for (i = 0; i < len - 1; i++)
+    {
+        dist += grid[*((int*)(route->data))]
+                    [*((int*)(route->next->data))];
+        new_route[len + 1 - i] = *((int*)(route->data));
+        route = route->next;
     }
-    else if (arr_routes_list[RI(i, cur_i, n)].arr_routes[0].total_dist 
-        >= route_dist(cur_route, cur_route_len, grid)) {
-        save_route(cur_route, cur_route_len, 
-            arr_routes_list, RI(i, j, n));
-    } 
+    new_route[2] = *((int*)(route->data));
+    new_route[0] = dist;
+    new_route[1] = len;
+    return new_route;
+}
+
+void mx_clear_list_routs(t_list **head) {
+    if (!*head || !head) {
+        return;
+    }
+    while (*head) {
+        free((*head)->data);
+        mx_pop_front(head);
+    }
+}
+
+
+
+void save_route(t_list *route, int len, t_list *dst, int **grid) {
+
+    if (!dst) {
+        mx_push_front(&dst, create_root(route, len, grid));
+        return;
+    }
+    if (*((int*)(dst->data)) == *((int*)(route->data))) {
+        mx_push_back(&dst, create_root(route, len, grid));
+    }
+    else {
+        mx_clear_list_routs(&dst);
+        mx_push_front(&dst, create_root(route, len, grid));
+    }
 }
 
 int main(int argc, char *argv[]) {
@@ -175,8 +203,8 @@ for (int i = 0; i < isl_count; i++)
          printf("%d ", grid[i][j]); 
     printf("\n");
 }
-    // argc++;
-    // argc--;
+    argc++;
+    argc--;
 #endif 
 
     /* creating an array of lists of the shortest routes 
@@ -193,72 +221,110 @@ for (int i = 0; i < isl_count; i++)
     
 
     /* creating all the routes from i-th islands to j-th (MAIN ALGORYTHM) */
-    int start = -1;
+    // int start = -1;
     int *used_isl = (int*) malloc(sizeof(int) * n);
+
     for (int i = 0; i < n; i++) {
         used_isl[i] = -1;
     }
-    
-    t_routes_list *arr_routes_list = 
-        create_arr_routes_list (n * (n - 1) / 2);
 
+    int *isl_nums = (int*) malloc(sizeof(int) * n);
+
+    for (int i = 0; i < n; i++) {
+        isl_nums[i] = i;
+    }
+    
     for (int i = 0; i < n - 1; i++) { 
         
-        t_list *cur_route = mx_create_node(grid[i]);
+        t_list *cur_route = mx_create_node(&isl_nums[i]);
         init_used_isl_arr(used_isl, n, i);
         // t_list *start_isl = cur_route;
         int cur_route_len = 1;
         int cur_i = i;
         int j = -1;
         int prev_isl = -1;
+        char flag = 0;
         while(cur_route)
         {
-            while((j = choose_isl(used_isl + (prev_isl + 1) * sizeof(int), n - prev_isl - 1)) >= 0) //WARNING!!!!! NEED TO BE CORRECTED
-            //BUG - when NOT ALL the islands were used
-            //BUG - prev isl when starting from beg.
-            {
+
+            while((j = choose_isl(used_isl + prev_isl + 1, 
+                    n - prev_isl - 1)) >= 0) {
+                j += prev_isl + 1;
+                                #ifdef DEBUG
+                                printf("Beginning of 1-st WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d\n", i, j, cur_i, prev_isl);
+                                
+                                #endif 
                 
-                while (grid[cur_i][j] < 0) 
-                {   //WARNING!!!!! NEED TO BE CORRECTED       
+                while (grid[cur_i][j] < 0 || used_isl[j]) {   
                     if (++j == n) {
                         break;
                     }
                 }
-                if (j == n) {
-                    prev_isl = n - 1;
+                if (j == n) 
+                {
+                    // prev_isl = n - 1;
+                    flag = 1;  //flag means we have unused isls but have no bridges to them
+                                #ifdef DEBUG
+                                printf("Breaking from the 1-st WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d\n", i, j, cur_i, prev_isl);
+                                #endif 
                     break;
                 }
-                mx_push_front(&cur_route, grid[j]);
+                mx_push_front(&cur_route, &isl_nums[j]);
                 cur_route_len += 1;
-            
-                // start_isl = start_isl->next;
-                used_isl[j] = 1;
-                cur_i = j;
+                cur_i = *((int*)(cur_route->data));
+                used_isl[cur_i] = 1;
                 prev_isl = -1;
+                                #ifdef DEBUG
+                                printf("The ending of 1-st WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d\n", i, j, cur_i, prev_isl);
+                                for (int i = 0; i < n; i++) {
+                                    if (used_isl[i]){
+                                        printf("%d ", i);
+                                    }
+                                }
+                                        printf("\n");
+                                #endif 
+
             }
-            while((j = choose_isl(used_isl + (prev_isl + 1) * sizeof(int), 
-                    n - prev_isl - 1)) < 0) {
-                // if (*((int*)(cur_route->data)) > i) {
-                //     save_route(cur_route, cur_route_len);
-                // }
+            while((j = choose_isl(used_isl + (prev_isl + 1), 
+                    n - prev_isl - 1)) < 0 || flag) {
+                j += prev_isl + 1;
+                                #ifdef DEBUG
+                                printf("BEG 2-nd WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d\n", i, j, cur_i, prev_isl);
+                                #endif 
+                flag = 0;
                 if (cur_i > i) {
-                    if (!arr_routes_list[RI(i, cur_i, n)].count) {
-                        save_route(cur_route, cur_route_len, RI(i, j, n));
-                    }
-                    else if (arr_routes_list[RI(i, cur_i, n)].arr_routes[0].total_dist 
-                        >= route_dist(cur_route, cur_route_len, grid)) {
+                    if (!shortest_path[RI(i, cur_i, n)]) {
                         save_route(cur_route, cur_route_len, 
-                            arr_routes_list, RI(i, j, n));
+                        shortest_path[RI(i, cur_i, n)], grid);
+                    }
+                    else if (*((int*)(shortest_path[RI(i, cur_i, n)]->data))
+                          >= *((int*)(cur_route->data))) {
+                        save_route(cur_route, cur_route_len, 
+                        shortest_path[RI(i, cur_i, n)], grid);
                     }
                 }
                 used_isl[cur_i] = 0;
                 prev_isl = cur_i;
-                mx_pop_front(cur_route);
+                mx_pop_front(&cur_route);
                 if (cur_route) {
                     cur_i = *((int*)(cur_route->data));
                 }
                 cur_route_len -= 1;
+                                #ifdef DEBUG
+                                printf("end 2-nd WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d\n", i, j, cur_i, prev_isl);
+                                for (int i = 0; i < n; i++) {
+                                    if (used_isl[i]){
+                                        printf("%d ", i);
+                                    }
+                                }
+                                        printf("\n");
+
+                                #endif 
+
             }
+                                #ifdef DEBUG
+                                printf("\nEnd of main WHILE.\n\n");
+                                #endif 
 
         }
     }

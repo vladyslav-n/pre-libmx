@@ -5,25 +5,23 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "clang-6.0 build and debug active file",
+            "name": "(gdb) Запустить",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
+            "program": "/home/vlinux/ucode/pathfinder/src/a.out",
+            "args": ["copy.txt"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb",
+            "MIMode": "gdb",
             "setupCommands": [
                 {
                     "description": "Включить автоматическое форматирование для gdb",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
-            ],
-            "preLaunchTask": "clang-6.0 build active file",
-            "miDebuggerPath": "/usr/bin/lldb-mi-6.0"
+            ]
         }
     ]
 }

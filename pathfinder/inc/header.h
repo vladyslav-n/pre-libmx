@@ -11,21 +11,21 @@ enum errors {
     INV_NUM_OF_ISLS
 };
 
-typedef struct s_route {
-    int len;
-    int *route_isls;
-    int total_dist;
-} t_route;
+// typedef struct s_route {
+//     int len;
+//     int *route_isls;
+//     int total_dist;
+// } t_route;
 
 // typedef struct s_all_pathes {
 //     int count;
 //     t_route *route;
 // } t_all_pathes;
 
-typedef struct s_routes_list {
-    int count;
-    t_route *arr_routes;
-} t_routes_list;
+// typedef struct s_routes_list {
+//     int count;
+//     t_route *arr_routes;
+// } t_routes_list;
 
 
 
