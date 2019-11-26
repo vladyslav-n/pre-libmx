@@ -2,7 +2,7 @@
 *.out
 *.txt
 *.cc
-.vscode
+.vscode/
 main.c
 1
 1 копія
