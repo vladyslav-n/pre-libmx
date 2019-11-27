@@ -1,6 +1,7 @@
 #include "../inc/header.h"
 #include <stdio.h>
-#define DEBUG
+// #define DEBUG
+#define DEBUGG
 
 int **create_grid(int row, int col, int val)
 {
@@ -138,6 +139,52 @@ void save_route(t_list *route, int len, t_list *dst, int **grid) {
     else {
         mx_clear_list_routs(&dst);
         mx_push_front(&dst, create_root(route, len, grid));
+    }
+}
+
+
+void print_distance(int *route, int **grid) {
+    int i = 0;
+    mx_printstr("Distance: ");
+        for (i = 0; i < route[1] - 1; i++)
+        {
+            mx_printint(grid[route[i + 2]][route[i + 3]]);
+            mx_printstr(" + ");
+        }
+        mx_printstr(" = ");
+        mx_printint(route[0]);
+        mx_printstr("\n");
+}
+
+void print_route(int *route, char **names) {
+    int i = 0;
+
+    mx_printstr("Route: ");
+    for (i = 0; i < route[1] - 1; i++)
+    {
+        mx_printstr(names[route[i + 2]]);
+        mx_printstr(" -> ");
+    }
+        mx_printstr(names[route[i + 2]]);
+        mx_printstr("\n");
+}
+
+void print_path(t_list *pathes, char **names, int **grid) {
+    // int path_ind = RI(i, j, n);
+    int len = -1;
+
+    while (pathes) 
+    {
+        len = *((int*)(pathes->data) + 1);
+        mx_printstr("========================================\nPath: ");
+        mx_printstr(names[*((int*)(pathes->data) + 2)]);
+        mx_printstr(" -> ");
+        mx_printstr(names[*((int*)(pathes->data) + len + 1)]);
+        mx_printstr("\n");
+        print_route(pathes->data, names);
+        print_distance(pathes->data, grid);
+        mx_printstr("========================================\n");
+        pathes = pathes->next;
     }
 }
 
@@ -329,7 +376,14 @@ for (int i = 0; i < isl_count; i++)
         }
     }
 
-    // /* searching for a route from i-th island to j-th */
-
+    /* printing */
+    for (int i = 0; i < routes_count; i++) {
+        print_path(shortest_path[i], isl_names, grid);
+    }
+    
+    if (1 > 2) {  //DELETETETETETETTETETE!!!!!!!!!!!!!!!!!!
+        argc++;
+        argc--;
+    }
 }
 
