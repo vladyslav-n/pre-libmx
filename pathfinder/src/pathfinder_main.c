@@ -1,7 +1,7 @@
 #include "../inc/header.h"
 #include <stdio.h>
 // #define DEBUG
-#define DEBUGG
+// #define DEBUGG
 
 int **create_grid(int row, int col, int val)
 {
@@ -127,31 +127,20 @@ void mx_clear_list_routs(t_list **head) {
 
 
 
-void save_route(t_list *route, int len, t_list *dst, int **grid) {
-
-    if (!dst) {
-        mx_push_front(&dst, create_root(route, len, grid));
-        return;
-    }
-    if (*((int*)(dst->data)) == *((int*)(route->data))) {
-        mx_push_back(&dst, create_root(route, len, grid));
-    }
-    else {
-        mx_clear_list_routs(&dst);
-        mx_push_front(&dst, create_root(route, len, grid));
-    }
-}
-
-
 void print_distance(int *route, int **grid) {
     int i = 0;
     mx_printstr("Distance: ");
-        for (i = 0; i < route[1] - 1; i++)
+        for (i = 0; i < route[1] - 2; i++)
         {
             mx_printint(grid[route[i + 2]][route[i + 3]]);
             mx_printstr(" + ");
         }
-        mx_printstr(" = ");
+
+            if (route[1] > 2)
+            {
+                mx_printint(grid[route[i + 2]][route[i + 3]]);
+                mx_printstr(" = ");
+            }
         mx_printint(route[0]);
         mx_printstr("\n");
 }
@@ -298,7 +287,7 @@ for (int i = 0; i < isl_count; i++)
                     n - prev_isl - 1)) >= 0) {
                 j += prev_isl + 1;
                                 #ifdef DEBUG
-                                printf("Beginning of 1-st WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d\n", i, j, cur_i, prev_isl);
+                                printf("Beginning of 1-st WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d, cur_route_len = %d\n", i, j, cur_i, prev_isl, cur_route_len);
                                 
                                 #endif 
                 
@@ -312,7 +301,7 @@ for (int i = 0; i < isl_count; i++)
                     // prev_isl = n - 1;
                     flag = 1;  //flag means we have unused isls but have no bridges to them
                                 #ifdef DEBUG
-                                printf("Breaking from the 1-st WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d\n", i, j, cur_i, prev_isl);
+                                printf("Breaking from the 1-st WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d, cur_route_len = %d\n", i, j, cur_i, prev_isl, cur_route_len);
                                 #endif 
                     break;
                 }
@@ -322,7 +311,7 @@ for (int i = 0; i < isl_count; i++)
                 used_isl[cur_i] = 1;
                 prev_isl = -1;
                                 #ifdef DEBUG
-                                printf("The ending of 1-st WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d\n", i, j, cur_i, prev_isl);
+                                printf("The ending of 1-st WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d, cur_route_len = %d\n", i, j, cur_i, prev_isl, cur_route_len);
                                 for (int i = 0; i < n; i++) {
                                     if (used_isl[i]){
                                         printf("%d ", i);
@@ -336,18 +325,28 @@ for (int i = 0; i < isl_count; i++)
                     n - prev_isl - 1)) < 0 || flag) {
                 j += prev_isl + 1;
                                 #ifdef DEBUG
-                                printf("BEG 2-nd WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d\n", i, j, cur_i, prev_isl);
+                                printf("BEG 2-nd WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d, cur_route_len = %d\n", i, j, cur_i, prev_isl, cur_route_len);
                                 #endif 
                 flag = 0;
-                if (cur_i > i) {
-                    if (!shortest_path[RI(i, cur_i, n)]) {
-                        save_route(cur_route, cur_route_len, 
-                        shortest_path[RI(i, cur_i, n)], grid);
+                if (cur_i > i) 
+                {
+                    int ri_tmp = RI(i, cur_i, n);
+
+                    if (!shortest_path[ri_tmp]) {
+                        mx_push_back(&shortest_path[ri_tmp], 
+                        create_root(cur_route, cur_route_len, grid));
                     }
-                    else if (*((int*)(shortest_path[RI(i, cur_i, n)]->data))
-                          >= *((int*)(cur_route->data))) {
-                        save_route(cur_route, cur_route_len, 
-                        shortest_path[RI(i, cur_i, n)], grid);
+                    else if (*((int*)(shortest_path[ri_tmp]->data))
+                          == route_dist(cur_route, cur_route_len, grid)) {
+                        mx_push_back(&shortest_path[ri_tmp], 
+                        create_root(cur_route, cur_route_len, grid));
+                    }
+                    else if (*((int*)(shortest_path[ri_tmp]->data))
+                          > route_dist(cur_route, cur_route_len, grid)) 
+                    {
+                        mx_clear_list_routs(&shortest_path[ri_tmp]);
+                        mx_push_back(&shortest_path[ri_tmp], 
+                        create_root(cur_route, cur_route_len, grid));
                     }
                 }
                 used_isl[cur_i] = 0;
@@ -358,7 +357,7 @@ for (int i = 0; i < isl_count; i++)
                 }
                 cur_route_len -= 1;
                                 #ifdef DEBUG
-                                printf("end 2-nd WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d\n", i, j, cur_i, prev_isl);
+                                printf("end 2-nd WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d, cur_route_len = %d\n", i, j, cur_i, prev_isl, cur_route_len);
                                 for (int i = 0; i < n; i++) {
                                     if (used_isl[i]){
                                         printf("%d ", i);
@@ -376,14 +375,17 @@ for (int i = 0; i < isl_count; i++)
         }
     }
 
+    if (1 > 2) {  //DELETETETETETETTETETE!!!!!!!!!!!!!!!!!!
+        argc++;
+        argc--;
+    }
+
+
+
     /* printing */
     for (int i = 0; i < routes_count; i++) {
         print_path(shortest_path[i], isl_names, grid);
     }
     
-    if (1 > 2) {  //DELETETETETETETTETETE!!!!!!!!!!!!!!!!!!
-        argc++;
-        argc--;
-    }
 }
 
