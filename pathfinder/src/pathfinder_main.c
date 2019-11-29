@@ -1,7 +1,5 @@
 #include "../inc/header.h"
 #include <stdio.h>
-// #define DEBUG
-// #define DEBUGG
 
 int **create_grid(int row, int col, int val)
 {
@@ -45,6 +43,22 @@ void printerror(int num)
         case INV_NUM_OF_ISLS:
             mx_printerror("error: invalid number of islands\n");
             break;
+        case INV_ARGC:
+            mx_printerror("usage: ./pathfinder [filename]\n");
+            break;
+        case FILE_NOT_EXIST:
+            mx_printerror("error: file [filename] does not exist\n");
+            break;
+        case FILE_EMPTY:
+            mx_printerror("error: file [filename] is empty\n");
+            break;
+        // case INV_FIRST_LINE:
+        //     mx_printerror("usage: ./pathfinder [filename]\n");
+        //     break;
+        // case INV_LINE:
+        //     mx_printerror("usage: ./pathfinder [filename]\n");
+        //     break;
+           
     }
     exit(num);
 }
@@ -59,9 +73,6 @@ void init_used_isl_arr(int *arr, int len, int isl_index) {
         if (arr[i] < 0) {
             arr[i] = 0;
         }
-        // else if (i == isl_index) {
-        //     arr[i] = 1;
-        // }
     }
     arr[isl_index] = 1;
 }
@@ -77,15 +88,6 @@ int choose_isl(int *used_isl, int n) {
     }
     return -1;
 }
-
-// int **create_arr_routes_list(int num) {
-//     t_list **arr_routes_list = (t_list**) malloc 
-//         (num * sizeof(t_list*));
-//     for (int i = 0; i < num; i++) {
-//         arr_routes_list[i] = NULL;
-//     }
-//     return arr_routes_list;
-// }
 
 int route_dist(t_list *cur_route, int len, int **grid) {
     int dist = 0;
@@ -178,10 +180,20 @@ void print_path(t_list *pathes, char **names, int **grid) {
 }
 
 int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        printerror(INV_ARGC);
+    }
+    int fd = open(argv[1], O_RDONLY);
+    if (errno) {
+        printerror(FILE_NOT_EXIST);
+    }
+    close(fd);
 
-    // open(argv[1], O_RDONLY);
     /* save file to str */
     char *file = mx_file_to_str(argv[1]);
+    if (!*file) {
+        printerror(FILE_EMPTY);
+    }
     int lines_count = 0;
 
     /* devide file into separate lines & save the islands quantity */
@@ -230,18 +242,6 @@ int main(int argc, char *argv[]) {
     if (count < isl_count) {
         printerror(INV_NUM_OF_ISLS);
     }
-#ifdef DEBUG
-mx_print_strarr(isl_names, "\n");
-printf("\nand the grid:\n");
-for (int i = 0; i < isl_count; i++)
-{
-      for (int j = 0; j < isl_count; j++) 
-         printf("%d ", grid[i][j]); 
-    printf("\n");
-}
-    argc++;
-    argc--;
-#endif 
 
     /* creating an array of lists of the shortest routes 
      * (they may be not unique)
@@ -286,10 +286,6 @@ for (int i = 0; i < isl_count; i++)
             while((j = choose_isl(used_isl + prev_isl + 1, 
                     n - prev_isl - 1)) >= 0) {
                 j += prev_isl + 1;
-                                #ifdef DEBUG
-                                printf("Beginning of 1-st WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d, cur_route_len = %d\n", i, j, cur_i, prev_isl, cur_route_len);
-                                
-                                #endif 
                 
                 while (grid[cur_i][j] < 0 || used_isl[j]) {   
                     if (++j == n) {
@@ -300,9 +296,6 @@ for (int i = 0; i < isl_count; i++)
                 {
                     // prev_isl = n - 1;
                     flag = 1;  //flag means we have unused isls but have no bridges to them
-                                #ifdef DEBUG
-                                printf("Breaking from the 1-st WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d, cur_route_len = %d\n", i, j, cur_i, prev_isl, cur_route_len);
-                                #endif 
                     break;
                 }
                 mx_push_front(&cur_route, &isl_nums[j]);
@@ -310,23 +303,11 @@ for (int i = 0; i < isl_count; i++)
                 cur_i = *((int*)(cur_route->data));
                 used_isl[cur_i] = 1;
                 prev_isl = -1;
-                                #ifdef DEBUG
-                                printf("The ending of 1-st WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d, cur_route_len = %d\n", i, j, cur_i, prev_isl, cur_route_len);
-                                for (int i = 0; i < n; i++) {
-                                    if (used_isl[i]){
-                                        printf("%d ", i);
-                                    }
-                                }
-                                        printf("\n");
-                                #endif 
 
             }
             while((j = choose_isl(used_isl + (prev_isl + 1), 
                     n - prev_isl - 1)) < 0 || flag) {
                 j += prev_isl + 1;
-                                #ifdef DEBUG
-                                printf("BEG 2-nd WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d, cur_route_len = %d\n", i, j, cur_i, prev_isl, cur_route_len);
-                                #endif 
                 flag = 0;
                 if (cur_i > i) 
                 {
@@ -356,28 +337,10 @@ for (int i = 0; i < isl_count; i++)
                     cur_i = *((int*)(cur_route->data));
                 }
                 cur_route_len -= 1;
-                                #ifdef DEBUG
-                                printf("end 2-nd WHILE. i = %d j = %d, cur_i = %d, prev_isl = %d, cur_route_len = %d\n", i, j, cur_i, prev_isl, cur_route_len);
-                                for (int i = 0; i < n; i++) {
-                                    if (used_isl[i]){
-                                        printf("%d ", i);
-                                    }
-                                }
-                                        printf("\n");
-
-                                #endif 
 
             }
-                                #ifdef DEBUG
-                                printf("\nEnd of main WHILE.\n\n");
-                                #endif 
 
         }
-    }
-
-    if (1 > 2) {  //DELETETETETETETTETETE!!!!!!!!!!!!!!!!!!
-        argc++;
-        argc--;
     }
 
 

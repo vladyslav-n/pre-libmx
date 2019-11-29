@@ -1,9 +1,6 @@
 #include "../inc/header.h"
-// #ifdef DEBUG
-// #endif
 
-char **mx_strsplit_ncount(const char *s, char c, int *count)
-{
+char **mx_strsplit_ncount(const char *s, char c, int *count) {
     if (!s)
         return NULL;
     int words_count = mx_count_words(s, c);
@@ -12,7 +9,7 @@ char **mx_strsplit_ncount(const char *s, char c, int *count)
     int word_len = 0;
     int i = 0;
     int j = 0;
-    //skipchar(s, c, &i);
+    
     while (s[i])
     {
         if ((word_len = skip_untilchar_ncount(s, c, &i)))
